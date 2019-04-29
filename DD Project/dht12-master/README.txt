@@ -1,3 +1,7 @@
+IMPORTANT NOTE : 
+PLEASE REFER TO THE DOCUMENTATION.docx FILE FOR A DETAILED DOCUMENTATION OF THE WORKING OF THE CODE AND THE PROJECT
+We were planning to only read the humidity values as per our project topic, but then we have also implemented temperature and CRC verification (check user space code). So, all the values being displyed using this driver are authentic values.
+
 COMPILATION PROCEDURE
 ---------------------
 1)Change directory and move into the dht12-master folder using cd commands.

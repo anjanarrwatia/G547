@@ -10,19 +10,19 @@
 static int dht12_probe(struct i2c_client *client, const struct i2c_device_id *id);
 static int dht12_remove(struct i2c_client *client);
 
-static ssize_t dht12_read(struct file *file, char __user *buf, size_t count, loff_t *ppos);
+static ssize_t dht12_read(struct file *file, char __user *buf, size_t count, loff_t *ppos); 
 
 static struct file_operations dht12_fops = {
 	.owner = THIS_MODULE,
 	.read = dht12_read,
 };
-
+// used to register the device when detected.
 static struct miscdevice dht12_miscdevice = {
 	.name	= DEVICE_NAME,
 	.fops	= &dht12_fops,
 	.minor	= MISC_DYNAMIC_MINOR,
 };
-
+/* client object created when we write Device name and its i2c address into new_device file in /sys/modules/i2c/devices/i2c1.new_device*/
 static struct i2c_client *g_client;
 static int dht12_probe(struct i2c_client *client, const struct i2c_device_id *id)
 {
@@ -44,7 +44,7 @@ static int dht12_remove(struct i2c_client *client)
 	misc_deregister(&dht12_miscdevice);
 	return 0;
 }
-
+// kernel read function
 static ssize_t dht12_read(struct file *file, char __user *buf, size_t count, loff_t *ppos)
 {
 	char data_addr = 0x00;
@@ -86,7 +86,7 @@ static void __exit dht12_exit(void)
 
 module_init(dht12_init);
 module_exit(dht12_exit);
-MODULE_AUTHOR("Linga Abhishek");
+MODULE_AUTHOR("Linga Abhishek and Anjana Sharma");
 MODULE_DESCRIPTION("A Device Driver for DHT12 Sensor");
 MODULE_LICENSE("GPL");
 MODULE_VERSION("V0.1");

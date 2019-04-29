@@ -12,7 +12,7 @@ int main(void)
 	char read_buf[5];
 	char sign;
 	printf("dht12 test\n");
-	fd = open(DEV_PATH, O_RDONLY);
+	fd = open(DEV_PATH, O_RDONLY); // open device file
 	if(fd < 0)
 	{
 		printf("open %s failed\n", DEV_PATH);
@@ -21,9 +21,11 @@ int main(void)
 	while(1)
 	{
 		read(fd, read_buf, 5);
+//CRC VERIFICATION
 		if(read_buf[4] == (read_buf[0] + read_buf[1] + read_buf[2] + read_buf[3]))
 		{ 
 			printf("semi: %d.%d \n", read_buf[0], read_buf[1]);
+// MSB of 4th Byte is Sign bit of temperature
 			if(read_buf[3] & 0x80)
 				sign = '-';
 			else
